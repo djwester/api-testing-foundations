@@ -2,13 +2,13 @@
 
 ## Table of contents
 
-<details>
+
 <!-- toc -->
 - [Setup and installation](#install)
 - [Challenges](#challenges)
   * [Find the secret](#secret-profile)
 <!-- tocstop -->
-</details>
+
 
 ## Install
 After cloning the repo locally you can install it by calling
