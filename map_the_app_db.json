@@ -1,0 +1,29 @@
+{
+  "blogposts": [
+    {
+      "id": 1,
+      "title": "Blog Post 1",
+      "body": "some text goes in here",
+      "author":"Bob Smith"
+    },
+    {
+      "id": 2,
+      "title": "Blog Post 2",
+      "body": "some text goes in here",
+      "author":"Bob Smith"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "blogpostId": 1
+    }
+  ],
+  "profile":
+    {
+      "id": 1,
+      "name": "Bob Smith",
+      "eyes": "blue"
+    }
+}
