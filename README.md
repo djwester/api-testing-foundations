@@ -35,6 +35,37 @@ The challenge:
 
 There is a secret profile (profile 1) that you are not supposed to be able to access. Using only API calls, can you find out the name of that profile?
 
+#### Routes
+
+The find the secret challenge can be solved using the following routes:
+
+```
+GET    /blogposts
+GET    /blogposts/<id>
+GET    /comments
+GET    /comments/<id>
+GET    /profiles
+GET    /profiles/<id>
+```
+
+You may also need to use the following parameters:
+
+##### Relationships
+
+To include children resources, add `_embed`
+
+```
+GET /blogposts?_embed=comments
+GET /blogposts/1?_embed=comments
+```
+
+To include parent resource, add `_expand`
+
+```
+GET /comments?_expand=blogpost
+GET /comments/1?_expand=blogpost
+```
+
 ### Biggest ID
 The challenge:
 
