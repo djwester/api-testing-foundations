@@ -50,6 +50,13 @@ function isOldFormat(req){
   return false;
 }
 
+function get_base_resource_from_url(url){
+  return url.split('/')[1]
+}
+
+function get_expand_type_from_url(url){
+  return url.split('=')[1]
+}
 server.use(middlewares)
 server.use(jsonServer.bodyParser)
 
@@ -60,7 +67,7 @@ server.use((req, res, next) => {
     }else{
       
       res.status(400).jsonp({
-        error: "Incorrect parameters given"
+        error: "Incorrect parameters given. The required fields are: ['title','body','profileId','avatarId']"
       })
       res.end();
     }
@@ -79,7 +86,27 @@ server.use((req, res, next) => {
   
   }
   else {
-    next();
+    var allowed_expandMap = {
+      'avatars':['profile','blogpost','comment'],
+      'comments':['blogpost'],
+      'blogposts':['profile'],
+      'profiles':[]
+    }
+    if (req.url.includes('_expand')){
+      var base_resource = get_base_resource_from_url(req.url)
+      var expand_type = get_expand_type_from_url(req.url)
+      var allowed_expand_types = allowed_expandMap[base_resource]
+      if (allowed_expand_types.indexOf(expand_type)>=0){
+        next();
+      }else{
+        res.status(400).jsonp({
+          error: base_resource + " does not have a parent " + expand_type
+        })
+        res.end();
+      }      
+    }else{
+      next();
+    }
   }
 })
 server.use(router)

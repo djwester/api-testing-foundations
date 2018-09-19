@@ -23,7 +23,11 @@
   "avatars": [
     {
       "id": 1,
-      "url": "www.example.com"
+      "title": "The FIRST blog post",
+      "body": "This is my first blog post",
+      "profileId": 1,
+      "blogpostId":1,
+      "commentId":1
     }
   ]
 }
