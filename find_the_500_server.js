@@ -39,17 +39,6 @@ function allRequiredFieldsPresent(req){
   return false;
 }
 
-function isOldFormat(req){
-  var oldFormatFieldsBlogPost = ['id','title','body','profileId'];
-  if (req.url.includes('blogposts/')){
-    if (compareArrays(Object.keys(req.body),oldFormatFieldsBlogPost)){
-      return true;
-    }
-    return false;
-  }
-  return false;
-}
-
 function get_base_resource_from_url(url){
   return url.split('/')[1]
 }
@@ -94,15 +83,8 @@ server.use((req, res, next) => {
         var new_field = missing_fields[i]
         req.body[new_field] = null
       }
-    }
-    if (isOldFormat(req)){
-      //'upgrade' to use the new format
-      req.body.avatarUrl = null;
       next()
-    }else{ 
-    next()
-  }
-  
+    }  
   }
   else {
     var allowed_expandMap = {
