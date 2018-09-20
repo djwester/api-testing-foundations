@@ -23,15 +23,15 @@ function compareArrays(arr1,arr2){
 }
 
 function allRequiredFieldsPresent(req){
-  var requiredFieldsBlogPost = ['title','body','profileId','avatarId']
-  if (req.url.includes('blogposts')){
+  var requiredFieldsAvatar = ['description','url','profileId','blogpostId','commentId']
+  if (get_base_resource_from_url(req.url) == 'avatars'){
      //check without id
-    if (compareArrays(Object.keys(req.body),requiredFieldsBlogPost)){
+    if (compareArrays(Object.keys(req.body),requiredFieldsAvatar)){
       return true;
     }
     //check with id
-    requiredFieldsBlogPost.unshift('id')
-    if (compareArrays(Object.keys(req.body),requiredFieldsBlogPost)){
+    requiredFieldsAvatar.unshift('id')
+    if (compareArrays(Object.keys(req.body),requiredFieldsAvatar)){
       return true;
     }
     return false;
@@ -57,6 +57,18 @@ function get_base_resource_from_url(url){
 function get_expand_type_from_url(url){
   return url.split('=')[1]
 }
+
+function get_missing_fields(req){
+  var requiredFieldsAvatar = ['description','url','profileId','blogpostId','commentId']
+  var missing_fields = [];
+  for (var i=0; i <requiredFieldsAvatar.length; i++){
+    var body_keys = Object.keys(req.body)
+    if (body_keys.indexOf(requiredFieldsAvatar[i]) < 0 ){
+      missing_fields.push(requiredFieldsAvatar[i]);
+    }
+  }
+  return missing_fields
+}
 server.use(middlewares)
 server.use(jsonServer.bodyParser)
 
@@ -67,15 +79,22 @@ server.use((req, res, next) => {
     }else{
       
       res.status(400).jsonp({
-        error: "Incorrect parameters given. The required fields are: ['title','body','profileId','avatarId']"
+        error: "Incorrect parameters given."
       })
       res.end();
     }
   }
   else if (req.method === 'PUT'){
     if (allRequiredFieldsPresent(req)){
+      console.log('here')
       next()
-    } 
+    } else{
+      var missing_fields = get_missing_fields(req)
+      for(var i=0; i <missing_fields.length; i++){
+        var new_field = missing_fields[i]
+        req.body[new_field] = null
+      }
+    }
     if (isOldFormat(req)){
       //'upgrade' to use the new format
       req.body.avatarUrl = null;
