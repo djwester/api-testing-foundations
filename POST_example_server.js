@@ -1,6 +1,6 @@
 const jsonServer = require('json-server')
 const server = jsonServer.create()
-const router = jsonServer.router('find_the_500_db.json')
+const router = jsonServer.router('POST_example_db.json')
 const middlewares = jsonServer.defaults()
 
 function compareArrays(arr1,arr2){
