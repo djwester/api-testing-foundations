@@ -75,7 +75,6 @@ server.use((req, res, next) => {
   }
   else if (req.method === 'PUT'){
     if (allRequiredFieldsPresent(req)){
-      console.log('here')
       next()
     } else{
       var missing_fields = get_missing_fields(req)
