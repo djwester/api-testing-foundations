@@ -7,6 +7,7 @@
 - [Setup and installation](#install)
 - [Challenges](#challenges)
   * [Find the secret](#secret-profile)
+  * [Find the 500](#find-the-500-errors)
 <!-- tocstop -->
 
 
@@ -67,7 +68,7 @@ GET /comments?_expand=blogpost
 GET /comments/1?_expand=blogpost
 ```
 
-### Find 500 Errors
+### Find The 500 Errors
 The challenge:
 
 There are (at least) two 500 errors to be found in this little application. See if you can find them using only API calls.
