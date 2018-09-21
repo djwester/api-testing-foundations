@@ -29,7 +29,7 @@ Where the available servers are:
 - find_the_500_server.js
 
 ## Challenges
-These challenges are all designed to be 'black box.' The purpose of them is to help you learn more about how APIs work and what kinds of things to think about when testing them. For you to get the most of them, try to solve them all by using only API calls. Don't go looking in the server implementations or the databases for the answers.  See if you can find them in with only using the APIs
+These challenges are all designed to be 'black box.' The purpose of them is to help you learn more about how APIs work and what kinds of things to think about when testing them. For you to get the most of them, try to solve them all by using only API calls. Don't go looking in the server implementations or the databases for the answers.  See if you can find them with only using the APIs
 
 ### Secret profile
 The challenge:
@@ -83,7 +83,23 @@ GET    /comments
 GET    /comments/<id>
 GET    /profiles
 GET    /profiles/<id>
+GET    /avatars
+GET    /avatars/<id>
 ```
+POST and PUT commands are also available. To figure out what parameters they take, just do a GET call on the corresponding resource to see what paramters it has.
+```
+POST    /blogposts
+POST    /comments
+POST    /profiles
+POST    /avatars
+
+PUT    /blogposts/<id>
+PUT    /comments/<id>
+PUT    /profiles/<id>
+PUT    /avatars/<id>
+```
+
+DELETE commands will also work, but you shouldn't need them to solve this challenge
 
 You may also need to use the following parameters:
 

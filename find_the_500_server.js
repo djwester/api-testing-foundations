@@ -36,7 +36,7 @@ function allRequiredFieldsPresent(req){
     }
     return false;
   }
-  return false;
+  return true;
 }
 
 function get_base_resource_from_url(url){
