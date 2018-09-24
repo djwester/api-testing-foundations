@@ -75,6 +75,10 @@ server.use((req, res, next) => {
   }
   else if (req.method === 'PUT'){
     if (allRequiredFieldsPresent(req)){
+      if (req.url.includes('/comments/2')){
+        res.sendStatus(401)
+        res.end()
+      }
       next()
     } else{
       var missing_fields = get_missing_fields(req)

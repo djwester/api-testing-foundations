@@ -12,6 +12,11 @@
       "id": 1,
       "body": "some comment",
       "blogpostId": 1
+    },
+    {
+      "body": "second comment",
+      "blogpostId": 1,
+      "id": 2
     }
   ],
   "profiles": [
